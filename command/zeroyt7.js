@@ -662,17 +662,18 @@ break
 case 'script': {
 tekssc = `❖ Source Code By ❖
 
-Author : Zero YT7
-Youtube : https://youtube.com/ZeroYT7
-Instagram : https://instagram.com/Zero_YT7
+Author : Irfaan Official 
+Youtube : https://youtube.com/@himhiachannel
+Instagram : https://instagram.com/irfaanabdulhafizh
 
 ❖ Link Base Script ❖
-https://github.com/Zero-YT7/Popeye-MD
+wa.me/6285624823115
 
 Big Thanks To
-• Zero YT7
 • Allah S.W.T
 • Ortu Ku
+• Zero YT7
+• Irfaan Official 
 • All Creator Bot
 • All Subscriber Ku`
 zeroyt7.sendMessage(from, { viewOnce : true, caption: tekssc, image: thumbnail, templateButtons: buttons3, footer: creator, mentions: [m.sender] })
