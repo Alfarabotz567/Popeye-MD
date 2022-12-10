@@ -131,8 +131,37 @@ if (isOwner && !m.key.fromMe) return
 
 //━━━━━━━━━━━━━━━[ AUTOREAD ]━━━━━━━━━━━━━━━━━//
 
-if (m.message && !m.key.fromMe) {
-zeroyt7.readMessages([m.key])
+if (msg.message) {
+zeroyt7.readMessages([msg.key])
+}
+
+// Function for Anti Spam
+msgFilter.ResetSpam(db_spam)
+
+const spampm = () => {
+console.log(color('~>[SPAM]', 'red'), color(moment(msg.messageTimestamp * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`${prefix+command} [${args.length}]`), 'from', color(pushname))
+msgFilter.addSpam(sender, db_spam)
+ronzz.sendTextMentions(from, `@${sender.split('@')[0]} terdeteksi spam bot tanpa jeda, lakukan perintah setelah 5 detik`, [sender])
+}
+
+const spamgr = () => {
+console.log(color('~>[SPAM]', 'red'), color(moment(msg.messageTimestamp * 1000).format('DD/MM/YY HH:mm:ss'), 'yellow'), color(`${prefix+command} [${args.length}]`), 'from', color(pushname), 'in', color(groupName))
+msgFilter.addSpam(sender, db_spam)
+zeroyt7.sendTextMentions(from, `@${sender.split('@')[0]} terdeteksi spam bot tanpa jeda, lakukan perintah setelah 5 detik`, [sender])
+}
+
+if (isCmd && msgFilter.isFiltered(sender) && !isGroup) return spampm()
+if (isCmd && msgFilter.isFiltered(sender) && isGroup) return spamgr()
+if (isCmd && !isOwner) {
+await sleep(50)
+msgFilter.addFilter(sender)
+}
+
+// Auto bio
+if (msg.message) {
+let biobot = "I’m "+botName+"🤖 || Runtime : "+runtime(process.uptime())+"⏰ || Status : Public || "+user.length+" Users"
+zeroyt7.setStatus(biobot)
+}
 
 //━━━━━━━━━━━━━━━[ CONSOLE ]━━━━━━━━━━━━━━━━━//
 
@@ -168,8 +197,8 @@ orderMessage: {
 itemCount: 2022,status: 200, 
 thumbnail: (fake), 
 surface: 200, 
-message: `Creted By Zero YT7`, 
-orderTitle: 'Created By Zero YT7', 
+message: `Creted By Irfaan Official`, 
+orderTitle: 'Created By Irfaan Official', 
 sellerJid: '0@s.whatsapp.net'}}, 
 contextInfo: {
 "forwardingScore":999,
@@ -222,7 +251,7 @@ zeroyt7.ev.emit('messages.upsert', msg)
 
 switch(command) {
 case 'menu': {
-menu = `Hy Saya Adalah ${global.botName}
+menu = `Hai Saya Adalah ${global.botName}
 Siap Membantu Anda
 Untuk Mempermudah Aktivitas
 Di WhatsApp Silahkan Pilih
